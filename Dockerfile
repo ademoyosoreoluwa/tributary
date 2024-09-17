@@ -1,5 +1,6 @@
 FROM python:3.11
-COPY ./requirements.txt
+WORKDIR /app
+COPY ./requirements.txt /app/
 RUN pip install -r requirements.txt
-COPY ./entrypoint.py
-CMD exec gunicorn entrypoint:app python entrypoint.py
+COPY ./entrypoint.py /app/
+CMD exec gunicorn entrypoint:app
